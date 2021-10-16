@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--suppress ELSpecValidationInJSP -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ds="http://deltaspike.apache.org/jsf"
+      xmlns:components="http://java.sun.com/jsf/composite/components"
+      xml:lang="en" lang="en">
+<h:head>
+    <h:outputStylesheet name="css/styles.css"/>
+    <!--    comment out below if testing and don't want to redirect if not logged in-->
+    <h:panelGroup rendered="#{!userBean.userLoggedIn}">
+        <meta http-equiv="refresh" content="0; URL=login.xhtml"/>
+    </h:panelGroup>
+</h:head>
+<h:body>
+    <ds:windowId/>
+
+    <components:navbar/>
+
+    <h:panelGroup layout="block" rendered="#{userBean.userLoggedIn}" id="profile-content">
+        <div class="user-info-label">USERNAME</div>
+        <div class="user-info">#{userBean.loginUser.displayName}</div>
+        <div class="user-info-label">EMAIL</div>
+        <div class="user-info">#{userBean.loginUser.email}</div>
+        <div class="user-info-label">BIO</div>
+        <div class="user-info">#{userBean.loginUser.bio}</div>
+    </h:panelGroup>
+
+</h:body>
+</html>

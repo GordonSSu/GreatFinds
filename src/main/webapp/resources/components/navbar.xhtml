@@ -1,0 +1,34 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:co="http://xmlns.jcp.org/jsf/composite" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<!-- from https://www.tutorialspoint.com/jsf/jsf_composite_components.htm and
+          https://mkyong.com/jsf2/composite-components-in-jsf-2-0/ -->
+
+<h:head>
+    <h:outputStylesheet name="css/styles.css"/>
+</h:head>
+
+<co:interface/>
+
+<co:implementation>
+    <div id="navbar">
+        <h:link outcome="index.xhtml"><span style="color: dodgerblue;" class="logo">Great</span><span
+                style="color: slategray;" class="logo">Finds</span></h:link>
+        <ul id="nav-right">
+            <ui:fragment
+                    rendered="#{userBean.isUserLoggedIn() and (request.requestURI.substring(request.requestURI.lastIndexOf('/')).equals('/index.xhtml') or request.requestURI.lastIndexOf('/') == request.requestURI.length() - 1)}">
+                <li><a href="javascript:void(0)" onclick="PF('postDialog').show();">POST</a></li>
+            </ui:fragment>
+            <li><h:link value="FEED" outcome="index.xhtml"/></li>
+            <li><h:form><h:commandLink value="#{userBean.loginOutText}" action="#{userBean.loginOutRedirect}"/></h:form>
+            </li>
+            <li><h:link value="PROFILE" outcome="profile.xhtml"/></li>
+        </ul>
+    </div>
+</co:implementation>
+
+</html>
